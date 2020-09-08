@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ProductoService } from '../services/producto.service';
+import { Producto } from '../model/producto';
 
 
 
@@ -9,36 +11,20 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  public productos = [{
-    "id": 1,
-    "nombre": "Celular",
-    "precio": 15000,
-    "cantidad": 10,
-    "imagen": "https://cnet3.cbsistatic.com/img/-VQytm8kHvCRwQY6kGruyYVHao4=/470x353/2019/10/21/12f91265-fea8-494f-a122-fca6ae10e8d4/pixel-4-xl.jpg"
-
-  },
-  {
-    "id": 2,
-    "nombre": "Ipad",
-    "precio": 35000,
-    "cantidad": 5,
-    "imagen": "https://www.ventasrosario.com.ar/wp-content/uploads/2019/11/ipad-wifi-select-silver-201909_GEO_US_FMT_WHH.png"
+  public productos;
+ 
+  constructor(private prodSrv: ProductoService) {
     
-    },
-    {
-      "id": 3,
-      "nombre": "Televisor",
-      "precio": 25000,
-      "cantidad": 0,
-      "imagen": "https://www.lg.com/ar/images/televisores/md05805029/gallery/49UH6100_Destop01_10082017.jpg"
-      
-    }
-  ]
+    let prod = new Producto
+    prod.id = "4";
+    prod.cantidad = 3;
+    prod.nombre = "Notebook";
+    prod.imagen = "https://http2.mlstatic.com/D_NQ_NP_2X_891872-MLA43349260114_092020-F.webp";
+    prod.precio = 80000;
+    
+    this.prodSrv.agregar(prod);
 
-  constructor(private activeRoute:ActivatedRoute) { }
-  
-  ngOnInit() {
-    this.activeRoute.paramMap.subscribe(paramMap => {paramMap.get("id")})
-  }
+    this.productos = prodSrv.obtenerTodos();
+   }
 
 }

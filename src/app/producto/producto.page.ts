@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ProductoService } from '../services/producto.service';
+
 
 @Component({
   selector: 'app-producto',
@@ -7,15 +9,20 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./producto.page.scss'],
 })
 export class ProductoPage implements OnInit {
+  
+  public producto;
+  constructor(private activateRoute: ActivatedRoute
+    , private prodSrv: ProductoService) { }
 
-  constructor(private activeRoute:ActivatedRoute) { }
-
-  ngOnInit() {
-    this.activeRoute.paramMap.subscribe(paramMap => {
-      alert(paramMap.get("id"));
-    })
+  ngOnInit() {    
+ 
+    this.activateRoute.paramMap.subscribe(
+      paramMap => {
+        this.producto =
+          this.prodSrv.obtenerPorId(paramMap.get("id"));
+      
+    });
+ 
   }
 
 }
-
-  
