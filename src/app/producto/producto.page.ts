@@ -20,9 +20,12 @@ export class ProductoPage implements OnInit {
       paramMap => {
         this.producto =
           this.prodSrv.obtenerPorId(paramMap.get("id"));
-      
-    });
- 
+      });
+        
+  }
+
+  public agregarCarro(): void{
+      this.prodSrv.carrito.push(this.producto);
   }
 
 }

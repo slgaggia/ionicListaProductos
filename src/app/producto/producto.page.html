@@ -7,7 +7,36 @@
     <ion-title>{{producto.nombre}}</ion-title>
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
 
+<ion-item>
+  <ion-text color="dark"><h6>{{producto.nombre}}</h6></ion-text>
+</ion-item>
+
+<ion-item>
+  <ion-img style="width: 200px; height:  200px;" [src]="producto.imagen"></ion-img>
+</ion-item>
+
+<ion-item>
+ <ion-text color="dark">
+   <h1>${{producto.precio}}</h1>
+ </ion-text>
+</ion-item>
+
+<ion-item>
+  <ion-label>Cantidad</ion-label>
+  <ion-input type="number" placeholder="({{producto.cantidad}} disponibles)"></ion-input>
+</ion-item>
+
+
+<ion-item>
+<ion-icon slot="start" color="success" name="card"></ion-icon>
+<h6>Pagá en 6 cuotas sin interés</h6>
+</ion-item>
+
+
+
+<ion-button (click)="agregarCarro()" expand="block" fill="solid" [disabled]="producto.cantidad==0">
+  AGREGAR AL CARRO
+</ion-button>
 </ion-content>

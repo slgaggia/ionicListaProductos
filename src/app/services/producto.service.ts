@@ -48,6 +48,8 @@ export class ProductoService {
     this.productos.push(Prod);
   }
 
+  public carrito: Array<Producto>=[];
+
 
   constructor() { }
 }
